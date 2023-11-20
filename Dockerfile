@@ -16,7 +16,7 @@ CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=mysql", "-Dspring-
 FROM base AS build
 RUN ./mvnw package
 
-FROM eclipse-eclipse-temurin:17-jre-jammy as production
+FROM eclipse-temurin:17-jre-jammy as production
 EXPOSE 8080
 COPY --from=build /app/target/spring-petclinic-*.jar /spring-petclinic.jar
 CMD [ "java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-petclinic.jar" ]
